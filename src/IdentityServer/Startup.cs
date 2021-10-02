@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer.Extensions;
+using IdentityServer.Infrastructure.EF;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,8 @@ namespace IdentityServer
             services.AddCustomizeDatabase(Configuration, _env);
             services.AddCustomizedAuth(Configuration, _env);
             services.AddCustomizedOpeniddict(Configuration, _env);
+            services.AddHostedService<UserSeedService>();
+            services.AddHostedService<ClientSeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
